@@ -1,7 +1,7 @@
-import {Coordinates} from "./coordinates";
+import {Coords} from "./coords";
 import {Type} from "./type";
 
 export interface Tick {
-  coordinates: Coordinates;
+  coordinates: Coords;
   type: Type;
 }

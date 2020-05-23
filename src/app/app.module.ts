@@ -13,6 +13,8 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {RequestProvider} from '../providers/request/request';
 import {MainPage} from "../pages/main/main";
 import {ComponentsModule} from "../components/components.module";
+import {HttpClientModule} from "@angular/common/http";
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import {ComponentsModule} from "../components/components.module";
   imports: [
     BrowserModule,
     ComponentsModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,7 +44,9 @@ import {ComponentsModule} from "../components/components.module";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RequestProvider
+    RequestProvider,
+    Geolocation,
+    HttpClientModule
   ]
 })
 export class AppModule {}

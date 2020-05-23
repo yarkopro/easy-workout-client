@@ -11,9 +11,16 @@
 </ion-header>
 
 <ion-content padding>
-<!--  <ew-map></ew-map>-->
-    <div class="map-container">
-      <div id="mapid" style="height:100%"></div>
-    </div>
+  <!--  <ew-map></ew-map>-->
+  <div class="map-container">
+    <div id="mapid" style="height:100%"></div>
+  </div>
 
+
+
+  <ion-fab>
+    <button ion-fab (tap)="locationClicked()">
+      <ion-icon name="locate-outline"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

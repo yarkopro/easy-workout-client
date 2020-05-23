@@ -1,6 +1,8 @@
 {
   "name": "easy-workout",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular",
   "id": "c07a1a94"
 }
