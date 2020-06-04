@@ -1,7 +1,8 @@
 {
   "name": "easy-workout-client",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

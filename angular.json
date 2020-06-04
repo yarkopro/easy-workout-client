@@ -33,6 +33,9 @@
             ],
             "styles": [
               {
+                "input": "./node_modules/leaflet/dist/leaflet.css"
+              },
+              {
                 "input": "src/theme/variables.scss"
               },
               {
@@ -128,7 +131,9 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "e2e": {
@@ -174,7 +179,8 @@
     }
   },
   "cli": {
-    "defaultCollection": "@ionic/angular-toolkit"
+    "defaultCollection": "@ionic/angular-toolkit",
+    "analytics": "2d29e113-657f-4841-9ba1-b0cb49fa7661"
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {

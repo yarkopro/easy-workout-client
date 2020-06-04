@@ -1,0 +1,55 @@
+{
+  "ticks": [
+    {
+      "coordinates": {
+        "latitude": "49.82964",
+        "longitude": "23.98582"
+      },
+      "type": 1
+    },{
+      "coordinates": {
+        "latitude": "49.8289",
+        "longitude": "23.9717"
+      },
+      "type": 1
+    },{
+      "coordinates": {
+        "latitude": "49.8184",
+        "longitude": "23.9792"
+      },
+      "type": 1
+    },{
+      "coordinates": {
+        "latitude": "49.8252",
+        "longitude": "23.9709"
+      },
+      "type": 1
+    },{
+      "coordinates": {
+        "latitude": "49.83156",
+        "longitude": "24.00119"
+      },
+      "type": 1
+    }
+  ],
+  "facilities": [
+    {
+      "coord": {
+        "latitude": "49.82964",
+        "longitude": "23.98582"
+      },
+      "type": 0,
+      "id": 1,
+      "name": "Silmash stadium",
+      "description": "Old stadium of Silmash plant.\nHas running track arround the footbal field",
+      "activities": [
+        {
+          "id": 1,
+          "name": "Lets run together!",
+          "timestamp": 1593072000,
+          "description": ""
+        }
+      ]
+    }
+  ]
+}
