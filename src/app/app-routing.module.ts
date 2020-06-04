@@ -11,6 +11,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'standalon-activity-modal',
+    loadChildren: () => import('./standalon-activity-modal/standalon-activity-modal.module').then( m => m.StandalonActivityModalPageModule)
+  },
+  {
+    path: 'facility-modal',
+    loadChildren: () => import('./facility-modal/facility-modal.module').then( m => m.FacilityModalPageModule)
+  },
 ];
 
 @NgModule({

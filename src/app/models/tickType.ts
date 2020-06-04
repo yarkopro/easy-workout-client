@@ -1,4 +1,4 @@
-export enum Type {
+export enum TickType {
   FACILITY,
   STANDALONE_ACTIVITY
 }

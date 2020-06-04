@@ -1,0 +1,19 @@
+<ion-toolbar>
+  <ion-title>Modal Content</ion-title>
+  <ion-buttons slot="end">
+    <ion-button (click)="dismissModal()">Close</ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <ion-card *ngIf="facility">
+    <ion-card-header>
+      <ion-icon [name]="facDefs[facility.type].icon"></ion-icon>
+      <ion-card-subtitle>{{facDefs[facility.type].name}}</ion-card-subtitle>
+      <ion-card-title>{{facility.name}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{facility.description}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>

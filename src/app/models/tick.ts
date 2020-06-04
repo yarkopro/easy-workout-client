@@ -1,7 +1,8 @@
 import {Coords} from "./coords";
-import {Type} from "./type";
+import {TickType} from "./tickType";
 
 export interface Tick {
+  entity_id: number;
   coordinates: Coords;
-  type: Type;
+  type: TickType;
 }
