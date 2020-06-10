@@ -2,9 +2,8 @@ import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import L, {LatLngExpression, Marker} from 'leaflet';
 import {Tick} from '../models/tick';
 import {RequestService} from '../request.service';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {ModalController, PopoverController} from '@ionic/angular';
-import {FacilityModalPage} from './facility-modal/facility-modal.page';
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
 import 'leaflet/dist/images/marker-icon.png';
@@ -105,19 +104,19 @@ export class HomePage implements AfterViewInit {
         Number.parseFloat(coords.latitude),
         Number.parseFloat(coords.longitude)
       ], 15)
-      setTimeout(() => this.presentModal(coords), 700);
+      setTimeout(() => this.presentNearbyFacilitiesModal(coords), 700);
     })
   }
 
   setLocationMarker(coords: Coords) {
     let lat = Number.parseFloat(coords.latitude);
     let lng = Number.parseFloat(coords.longitude);
-    let marker = L.marker([lat, lng]).addTo(this.map);
+    let marker = L.marker([lat, lng],{icon: greenIcon}).addTo(this.map);
+    this.currentLocationMarker && this.currentLocationMarker.remove();
     this.currentLocationMarker = marker;
   }
 
-
-  async presentModal(coords: Coords) {
+  async presentNearbyFacilitiesModal(coords: Coords) {
     const modal = await this.modalController.create({
       component: NearbyFacilitiesModalPage,
       swipeToClose: true,
@@ -125,6 +124,8 @@ export class HomePage implements AfterViewInit {
         'coords': coords,
       }
     });
+    modal.onWillDismiss()
+        .then(() => this.currentLocationMarker.remove())
     return await modal.present();
   }
 }
@@ -144,6 +145,15 @@ var greenIcon = new L.Icon({
   iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
   iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+var currentIcon = new L.Icon({
+  iconUrl: '../../assets/icon/current-location-icon.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [41, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   shadowSize: [41, 41]

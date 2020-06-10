@@ -9,7 +9,7 @@ import {FacilityModalPage} from '../facility-modal/facility-modal.page';
 @Component({
   selector: 'app-nearby-facilities-modal',
   templateUrl: './nearby-facilities-modal.page.html',
-  styleUrls: ['./nearby-facilities-modal.page.scss'],
+  styleUrls: ['./nearby-facilities-modal.page.scss', '../facility-modal/facility-modal.page.scss'],
 })
 export class NearbyFacilitiesModalPage implements OnInit {
 
