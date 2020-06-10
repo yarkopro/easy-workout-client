@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "db": "json-server --watch ./db.json",
+    "db": "json-server --watch ./db.json --routes=./routes.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

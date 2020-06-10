@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {RequestService} from '../request.service';
-import {Facility} from '../models/facility';
-import {facilityTypesDefinition} from '../models/facility-type';
+import {RequestService} from '../../request.service';
+import {Facility} from '../../models/facility';
+import {facilityTypesDefinition} from '../../models/facility-type';
 import {ModalController} from '@ionic/angular';
 
 @Component({

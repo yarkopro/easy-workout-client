@@ -17,15 +17,6 @@
     </ion-card-content>
   </ion-card>
   <div class="facility-activities" *ngIf="facility?.activities?.length > 0">
-<!--    <ion-list>-->
-<!--      <ion-item *ngFor="let activity of facility.activities">-->
-<!--        <ion-label>-->
-<!--          <h3>{{activity.timestamp | date: 'EEEE, d MMMM, yyyy'}}</h3>-->
-<!--          <h2>{{activity.name}}</h2>-->
-<!--          <ion-text>{{activity.description}}</ion-text>-->
-<!--        </ion-label>-->
-<!--      </ion-item>-->
-<!--    </ion-list>-->
     <h1><b>Activities on facility:</b></h1>
     <ion-card *ngFor="let activity of facility.activities">
       <ion-card-header>

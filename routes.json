@@ -1,3 +1,5 @@
 {
-  "/:facilities/:id/": "/:facilities/:id"
+  "/:facilities/:id/": "/:facilities/:id",
+  "/:facilities/nearby?longitude=:longitude?latitude=:latitude": "/:facilities",
+  "/:facilities/nearby/": "/:facilities"
 }

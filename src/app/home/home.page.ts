@@ -4,11 +4,13 @@ import {Tick} from '../models/tick';
 import {RequestService} from '../request.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {ModalController, PopoverController} from '@ionic/angular';
-import {FacilityModalPage} from '../facility-modal/facility-modal.page';
+import {FacilityModalPage} from './facility-modal/facility-modal.page';
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
 import 'leaflet/dist/images/marker-icon.png';
 import {FacilityPopoverComponent} from './facility-popover/facility-popover.component';
+import {NearbyFacilitiesModalPage} from './nearby-facilities-modal/nearby-facilities-modal.page';
+import {Coords} from '../models/coords';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +23,7 @@ export class HomePage implements AfterViewInit {
   private mapContainer: ElementRef;
   private map;
   private ticks: Marker[] = [];
+  private currentLocationMarker: Marker<any>;
 
   constructor(private modalController: ModalController,
               private popoverController: PopoverController,
@@ -96,18 +99,30 @@ export class HomePage implements AfterViewInit {
   }
 
   locationClicked() {
-    this.getCurrentLocation().then(coords => this.map.setView([
-      Number.parseFloat(coords.latitude),
-      Number.parseFloat(coords.longitude)
-    ], 15))
+    this.getCurrentLocation().then(coords => {
+      this.setLocationMarker(coords);
+      this.map.setView([
+        Number.parseFloat(coords.latitude),
+        Number.parseFloat(coords.longitude)
+      ], 15)
+      setTimeout(() => this.presentModal(coords), 700);
+    })
   }
 
-  async presentModal(facilityId: number) {
+  setLocationMarker(coords: Coords) {
+    let lat = Number.parseFloat(coords.latitude);
+    let lng = Number.parseFloat(coords.longitude);
+    let marker = L.marker([lat, lng]).addTo(this.map);
+    this.currentLocationMarker = marker;
+  }
+
+
+  async presentModal(coords: Coords) {
     const modal = await this.modalController.create({
-      component: FacilityModalPage,
+      component: NearbyFacilitiesModalPage,
       swipeToClose: true,
       componentProps: {
-        'facilityId': facilityId,
+        'coords': coords,
       }
     });
     return await modal.present();

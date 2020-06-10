@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FacilityModalPage} from '../../facility-modal/facility-modal.page';
+import {FacilityModalPage} from '../facility-modal/facility-modal.page';
 import {ModalController, PopoverController} from '@ionic/angular';
 import {Facility} from '../../models/facility';
 import {facilityTypesDefinition} from '../../models/facility-type';

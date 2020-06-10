@@ -17,7 +17,11 @@ const routes: Routes = [
   },
   {
     path: 'facility-modal',
-    loadChildren: () => import('./facility-modal/facility-modal.module').then( m => m.FacilityModalPageModule)
+    loadChildren: () => import('./home/facility-modal/facility-modal.module').then(m => m.FacilityModalPageModule)
+  },
+  {
+    path: 'nearby-facilities-modal',
+    loadChildren: () => import('./home/nearby-facilities-modal/nearby-facilities-modal.module').then(m => m.NearbyFacilitiesModalPageModule)
   },
 ];
 

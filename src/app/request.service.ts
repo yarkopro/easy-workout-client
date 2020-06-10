@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Tick} from './models/tick';
 import {Observable} from 'rxjs';
 import {API_URL} from './API_URL';
 import {Facility} from './models/facility';
 import {TickType} from './models/tickType';
+import {Coords} from './models/coords';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,12 @@ export class RequestService {
   getFacility(facilityId: number): Observable<Facility> {
     return this.http.get(API_URL + '/facilities/' + facilityId) as Observable<Facility>;
     // .pipe(map(text => JSON.parse(text as string))) as Observable<Tick[]>;
+  }
+
+  getNearbyFacilities(coords: Coords): Observable<Facility[]> {
+    let httpParams = new HttpParams()
+        .set("longitude", coords.longitude)
+        .set("latitude", coords.latitude);
+    return this.http.get<Facility[]>(API_URL + '/facilities/nearby', {params: httpParams})
   }
 }
