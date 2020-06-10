@@ -1,0 +1,8 @@
+<div *ngIf="facility" class="popover-container">
+  <ion-icon [name]="facDefs[facility.type].icon"></ion-icon>
+  <span class="type">{{facDefs[facility.type].name}}</span>
+  <div class="name">{{facility.name}}</div>
+  <div class="buttons-container">
+    <ion-button (click)="presentModal()">Details</ion-button>
+  </div>
+</div>

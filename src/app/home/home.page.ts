@@ -1,11 +1,14 @@
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
-import L, {Marker} from 'leaflet';
+import L, {LatLngExpression, Marker} from 'leaflet';
 import {Tick} from '../models/tick';
 import {RequestService} from '../request.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import {ModalController} from '@ionic/angular';
+import {ModalController, PopoverController} from '@ionic/angular';
 import {FacilityModalPage} from '../facility-modal/facility-modal.page';
-
+import 'leaflet/dist/images/marker-shadow.png';
+import 'leaflet/dist/images/marker-icon-2x.png';
+import 'leaflet/dist/images/marker-icon.png';
+import {FacilityPopoverComponent} from './facility-popover/facility-popover.component';
 
 @Component({
   selector: 'app-home',
@@ -20,35 +23,37 @@ export class HomePage implements AfterViewInit {
   private ticks: Marker[] = [];
 
   constructor(private modalController: ModalController,
+              private popoverController: PopoverController,
               private geolocation: Geolocation,
               private request: RequestService) {
   }
 
   ngAfterViewInit() {
     this.initializeMap();
-    this.fetchTicks().then(ticks => {
-      this.showTicks(ticks);
-    });
-    this.mapContainer.nativeElement.addEventListener('leafletMapReady', () => console.log("ready"))
-    this.presentModal(1);
   }
+
+  private DEFAULT_CENTER = [49.8356, 24.0147];
 
   private initializeMap() {
     var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
         osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         osm = L.tileLayer(osmUrl, {
           maxZoom: 18,
+          minZoom: 2,
           attribution: osmAttrib,
         });
 
     this.map = L.map('mapid')
         .addLayer(osm)
+        .setView(this.DEFAULT_CENTER as LatLngExpression, 14)
         .whenReady(() => {
-          setTimeout(() => {
+          setTimeout(async () => {
             this.map.invalidateSize();
+            this.fetchTicks().then(ticks => {
+              this.showTicks(ticks);
+            });
           }, 0);
         })
-        .setView([49.8356, 24.0147], 15)
   }
 
   fetchTicks(): Promise<Tick[]> {
@@ -56,13 +61,28 @@ export class HomePage implements AfterViewInit {
   }
 
   private showTicks(ticks: Tick[]) {
+    let self = this;
+    let onMarkerClick = function(e) {
+      self.presentPopover(e.originalEvent, this);
+    }
     ticks.forEach(tick => {
       let lat = Number.parseFloat(tick.coordinates.latitude);
       let lng = Number.parseFloat(tick.coordinates.longitude);
-      let marker = L.marker([lat, lng], {draggable: false});
+      let marker = L.marker([lat, lng]).addTo(this.map).on('click', onMarkerClick, tick)/*.bindPopup("You are within meters from this point");*/
       this.ticks.push(marker)
-      marker.addTo(this.map);
     })
+  }
+
+  async presentPopover(event: any, tick: Tick) {
+    const popover = await this.popoverController.create({
+      component: FacilityPopoverComponent,
+      componentProps: {
+        'facilityId': tick.entityId,
+      },
+      event: event,
+      translucent: true
+    });
+    return await popover.present();
   }
 
   getCurrentLocation(): Promise<any> {
@@ -82,21 +102,13 @@ export class HomePage implements AfterViewInit {
     ], 15))
   }
 
-  onMapReady(map: L.Map) {
-    setTimeout(() => {
-      map.invalidateSize();
-    }, 0);
-  }
-
   async presentModal(facilityId: number) {
     const modal = await this.modalController.create({
       component: FacilityModalPage,
-      cssClass: 'my-custom-class',
       swipeToClose: true,
       componentProps: {
         'facilityId': facilityId,
       }
-      // presentingElement: await this.modalCtrl.getTop() // Get the top-most ion-modal
     });
     return await modal.present();
   }
@@ -112,3 +124,21 @@ export class HomePage implements AfterViewInit {
 //     });
 //   });
 // }
+
+var greenIcon = new L.Icon({
+  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+var blueIcon  = new L.Icon({
+  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
