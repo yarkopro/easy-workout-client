@@ -43,6 +43,7 @@ export class HomePage implements AfterViewInit {
           maxZoom: 18,
           minZoom: 2,
           attribution: osmAttrib,
+          // tileSize: 512
         });
 
     this.map = L.map('mapid')
@@ -64,13 +65,13 @@ export class HomePage implements AfterViewInit {
 
   private showTicks(ticks: Tick[]) {
     let self = this;
-    let onMarkerClick = function(e) {
+    let onTickClick = function(e) {
       self.presentPopover(e.originalEvent, this);
     }
     ticks.forEach(tick => {
-      let lat = Number.parseFloat(tick.coordinates.latitude);
-      let lng = Number.parseFloat(tick.coordinates.longitude);
-      let marker = L.marker([lat, lng]).addTo(this.map).on('click', onMarkerClick, tick)/*.bindPopup("You are within meters from this point");*/
+      let lat = Number.parseFloat(tick.coords.latitude);
+      let lng = Number.parseFloat(tick.coords.longitude);
+      let marker = L.marker([lat, lng]).addTo(this.map).on('click', onTickClick, tick);
       this.ticks.push(marker)
     })
   }

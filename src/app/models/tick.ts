@@ -3,6 +3,6 @@ import {TickType} from "./tickType";
 
 export interface Tick {
   entityId: number;
-  coordinates: Coords;
+  coords: Coords;
   type: TickType;
 }

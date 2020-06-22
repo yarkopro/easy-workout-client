@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FacilityModalPage} from '../facility-modal/facility-modal.page';
-import {ModalController, PopoverController} from '@ionic/angular';
+import {ModalController, Platform, PopoverController} from '@ionic/angular';
 import {Facility} from '../../models/facility';
 import {facilityTypesDefinition} from '../../models/facility-type';
 import {RequestService} from '../../request.service';
@@ -20,12 +20,16 @@ export class FacilityPopoverComponent implements OnInit {
   facDefs = facilityTypesDefinition;
 
   constructor(private requestService: RequestService,
+              private platform: Platform,
               private popoverController: PopoverController,
               private modalController: ModalController) { }
 
   ngOnInit() {
     this.requestService.getFacility(this.facilityId)
         .subscribe(facility => this.facility = facility);
+    this.platform.backButton.subscribe(() => {
+      this.dismissPopover();
+    });
   }
 
   dismissPopover() {
@@ -42,4 +46,5 @@ export class FacilityPopoverComponent implements OnInit {
     });
     return await modal.present();
   }
+
 }

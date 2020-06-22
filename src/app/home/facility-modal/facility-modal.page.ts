@@ -13,6 +13,7 @@ export class FacilityModalPage implements OnInit {
 
   @Input()
   facilityId: number;
+  @Input()
   facility: Facility;
 
   facDefs = facilityTypesDefinition;
@@ -21,8 +22,10 @@ export class FacilityModalPage implements OnInit {
               private modalController: ModalController) { }
 
   ngOnInit() {
-    this.requestService.getFacility(this.facilityId)
-        .subscribe(facility => this.facility = facility);
+    if (!this.facility) {
+      this.requestService.getFacility(this.facilityId)
+          .subscribe(facility => this.facility = facility);
+    }
   }
 
   dismissModal() {

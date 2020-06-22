@@ -8,33 +8,33 @@
       },
       "type": 0
     },{
-      "entityId": 1,
+      "entityId": 2,
       "coordinates": {
         "latitude": "49.8289",
         "longitude": "23.9717"
       },
       "type": 0
     },{
-      "entityId": 1,
+      "entityId": 3,
       "coordinates": {
         "latitude": "49.8184",
         "longitude": "23.9792"
       },
       "type": 0
     },{
-      "entityId": 1,
+      "entityId": 4,
       "coordinates": {
         "latitude": "49.8252",
         "longitude": "23.9709"
       },
       "type": 0
     },{
-      "entityId": 1,
+      "entityId": 5,
       "coordinates": {
         "latitude": "49.83156",
         "longitude": "24.00119"
       },
-      "type": 0
+      "type": 1
     }
   ],
   "facilities": [
