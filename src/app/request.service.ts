@@ -17,23 +17,24 @@ export class RequestService {
   }
 
   getTicks(): Observable<Tick[]> {
-    return this.http.get(API_URL+"/ticks") as Observable<Tick[]>;
+    return this.http.get(API_URL+"/ticks/") as Observable<Tick[]>;
 
     // .pipe(map(text => JSON.parse(text as string))) as Observable<Tick[]>;
     // return
   }
 
   getEntityFromTick(tick: Tick): Observable<Facility> {
+    let params = new HttpParams().set("id", tick.entityId.toString())
     if (tick.type == TickType.FACILITY) {
-      return this.http.get(API_URL + '/facilities/' + tick.entityId) as Observable<Facility>;
+      return this.http.get(API_URL + '/facilities', {params: params}) as Observable<Facility>;
     } else if (tick.type == TickType.STANDALONE_ACTIVITY) {
-      return this.http.get(API_URL + '/standalone-activities/' + tick.entityId) as Observable<Facility>;
+      return this.http.get(API_URL + '/standalone-activities' + tick.entityId) as Observable<Facility>;
     }
   }
 
   getFacility(facilityId: number): Observable<Facility> {
-    return this.http.get(API_URL + '/facilities/' + facilityId) as Observable<Facility>;
-    // .pipe(map(text => JSON.parse(text as string))) as Observable<Tick[]>;
+    let params = new HttpParams().set("id", facilityId.toString())
+    return this.http.get(API_URL + '/facilities',{params: params}) as Observable<Facility>;
   }
 
   getNearbyFacilities(coords: Coords): Observable<Facility[]> {
