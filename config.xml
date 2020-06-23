@@ -11,6 +11,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <preference name="AndroidLaunchMode" value="singleTask" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />
@@ -100,5 +101,12 @@
     <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-plugin-geolocation" spec="^4.0.2" />
+    <plugin name="cordova-plugin-safariviewcontroller" spec="^1.6.0" />
+    <plugin name="cordova-plugin-customurlscheme" spec="^5.0.1">
+        <variable name="URL_SCHEME" value="org.yarkopro.easyworkout" />
+        <variable name="ANDROID_SCHEME" value="org.yarkopro.easyworkout" />
+        <variable name="ANDROID_HOST" value="easyworkout.eu.auth0.com" />
+        <variable name="ANDROID_PATHPREFIX" value="/cordova/org.yarkopro.easyworkout/callback" />
+    </plugin>
     <engine name="android" spec="7.0.0" />
 </widget>

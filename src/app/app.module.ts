@@ -10,6 +10,10 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
+import {IonicStorageModule} from '@ionic/storage';
+import {SafariViewController} from '@ionic-native/safari-view-controller/ngx';
+import {AuthService} from './auth/auth.service';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,9 +23,12 @@ import {Geolocation} from '@ionic-native/geolocation/ngx';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   providers: [
+    AuthService,
     HttpClientModule,
+    SafariViewController,
     StatusBar,
     SplashScreen,
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},

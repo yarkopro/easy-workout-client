@@ -20,18 +20,24 @@
     "@angular/platform-browser": "~9.1.6",
     "@angular/platform-browser-dynamic": "~9.1.6",
     "@angular/router": "~9.1.6",
+    "@auth0/cordova": "^0.4.3",
     "@capacitor/core": "2.1.0",
     "@ionic-native/core": "^5.26.0",
     "@ionic-native/geolocation": "^5.26.0",
+    "@ionic-native/safari-view-controller": "^5.26.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^5.0.0",
+    "@ionic/storage": "^2.2.0",
     "@ngx-translate/core": "^12.1.2",
+    "auth0-js": "^9.13.2",
     "cordova-android": "7.0.0",
+    "cordova-plugin-customurlscheme": "^5.0.1",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-geolocation": "^4.0.2",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.2.1",
+    "cordova-plugin-safariviewcontroller": "^1.6.0",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-whitelist": "^1.3.3",
@@ -43,6 +49,7 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^9.1.0",
     "@angular-devkit/build-angular": "~0.901.5",
     "@angular/cli": "~9.1.5",
     "@angular/compiler": "~9.1.6",
@@ -78,7 +85,14 @@
       "cordova-plugin-ionic-webview": {
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-safariviewcontroller": {},
+      "cordova-plugin-customurlscheme": {
+        "URL_SCHEME": "org.yarkopro.easyworkout",
+        "ANDROID_SCHEME": "org.yarkopro.easyworkout",
+        "ANDROID_HOST": "easyworkout.eu.auth0.com",
+        "ANDROID_PATHPREFIX": "/cordova/org.yarkopro.easyworkout/callback"
+      }
     },
     "platforms": [
       "android"
