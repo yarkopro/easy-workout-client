@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Tick} from './models/tick';
-import {Observable} from 'rxjs';
+import {from, Observable} from 'rxjs';
 import {API_URL} from './API_URL';
 import {Facility} from './models/facility';
 import {TickType} from './models/tickType';
@@ -48,5 +48,9 @@ export class RequestService {
   getActivity(id: number): Observable<Activity> {
     let params = new HttpParams().set("id", id.toString())
     return this.http.get<Activity>(API_URL + '/activities', {params: params});
+  }
+
+  subscribeToActivity() {
+    return null
   }
 }

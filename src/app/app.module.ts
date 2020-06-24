@@ -8,12 +8,12 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {IonicStorageModule} from '@ionic/storage';
 import {SafariViewController} from '@ionic-native/safari-view-controller/ngx';
 import {AuthService} from './auth/auth.service';
-
+import {TimeoutInterceptor} from './timeout-interceptor/timeout.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +31,7 @@ import {AuthService} from './auth/auth.service';
     SafariViewController,
     StatusBar,
     SplashScreen,
+    { provide: HTTP_INTERCEPTORS, useClass: TimeoutInterceptor, multi: true },
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
     Geolocation,
   ],

@@ -8,10 +8,12 @@ export function delayedRetry(delayMs: number, maxRetry = DEFAULT_MAX_RETRIES) {
     let retries = maxRetry;
     return (src: Observable<any>) =>
         src.pipe(
-            retryWhen((errors: Observable<any>) => errors.pipe(
-                delay(delayMs),
-                mergeMap(error => retries-- > 0 ? of(error) : throwError(getErrorMessage(maxRetry))
-                ))
-            )
+            retryWhen((errors: Observable<any>) => {
+                console.log(errors)
+                return errors.pipe(
+                    delay(delayMs),
+                    mergeMap(error => (retries-- > 0 ? of(error) : throwError(getErrorMessage(maxRetry))))
+                )
+            })
         );
 }

@@ -1,19 +1,33 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{activity.name}}</ion-title>
+    <ion-title>Активність</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-card>
+        <ng-container *ngIf="activity.author">
+            <ion-avatar slot="start">
+                <img src="{{activity.author.avatarUrl}}">
+            </ion-avatar>
+            <ion-label>
+                <h2>{{activity.author.fullName}}</h2>
+            </ion-label>
+        </ng-container>
+        <ion-card-header>
+            <ion-card-subtitle>{{activity.time}}</ion-card-subtitle>
+            <ion-card-subtitle>{{facility.name}}</ion-card-subtitle>
+            <ion-card-title>{{activity.name}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            {{activity.description}}
+        </ion-card-content>
+    </ion-card>
     <ion-item>
-        <ion-label *ngIf="activity.author">{{activity.author.fullName}}</ion-label><br>
-        <ion-label>{{activity.time}}</ion-label><br>
-        <ion-label>{{activity.description}}</ion-label><br>
+        <ion-label>
+            <h3>Люди, які беруть участь в активності:</h3>
+        </ion-label>
     </ion-item>
-
-    <ion-label>
-        Люди, які беруть участь в активності:
-    </ion-label>
     <ion-item *ngFor="let user of activity.userAssignments">
         <ion-avatar slot="start">
             <img src="{{user.avatarUrl}}">
@@ -22,8 +36,8 @@
             <h2>{{user.fullName}}</h2>
         </ion-label>
     </ion-item>
-    <ion-fab>
-      <ion-fab-button class="subscribe-button" (click)="subscribeToActivity()">
+    <ion-fab *ngIf="auth.authorized">
+      <ion-fab-button color="success" (click)="subscribeToActivity()">
         <ion-icon name="checkmark-outline"></ion-icon>
       </ion-fab-button>
     </ion-fab>

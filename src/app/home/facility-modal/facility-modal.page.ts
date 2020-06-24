@@ -5,6 +5,7 @@ import {facilityTypesDefinition} from '../../models/facility-type';
 import {ModalController} from '@ionic/angular';
 import {ActivityModalPage} from './activity-modal/activity-modal.page';
 import {Activity} from '../../models/activity';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-facility-modal',
@@ -21,7 +22,8 @@ export class FacilityModalPage implements OnInit {
   facDefs = facilityTypesDefinition;
 
   constructor(private requestService: RequestService,
-              private modalController: ModalController) { }
+              private modalController: ModalController,
+              private auth: AuthService) { }
 
   ngOnInit() {
     if (!this.facility) {
@@ -36,6 +38,7 @@ export class FacilityModalPage implements OnInit {
       swipeToClose: true,
       componentProps: {
         'activity': activity,
+        'facility': this.facility
       }
     });
     return await modal.present();

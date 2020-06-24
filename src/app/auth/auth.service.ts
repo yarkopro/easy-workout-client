@@ -17,6 +17,9 @@ export class AuthService {
     accessToken: string;
     user: any;
     loggedIn: boolean;
+    get authorized() {
+        return this.loggedIn;
+    }
     loading = true;
 
     constructor(

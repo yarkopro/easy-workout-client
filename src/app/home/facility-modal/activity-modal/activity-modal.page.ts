@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Activity} from '../../../models/activity';
 import {RequestService} from '../../../request.service';
+import {AuthService} from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-activity-modal',
@@ -11,15 +12,16 @@ export class ActivityModalPage implements OnInit {
 
   @Input()
   activity: Activity;
+  @Input()
+  facility: any;
 
-  constructor(private requestService: RequestService) { }
+  constructor(private requestService: RequestService,
+              public auth: AuthService) { }
 
   ngOnInit() {
-    this.requestService.getActivity(this.activity.id)
-        // .subscribe(activity => this.activity = activity);
   }
 
   subscribeToActivity() {
-
+    this.requestService.subscribeToActivity()
   }
 }
