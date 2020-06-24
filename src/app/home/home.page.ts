@@ -3,7 +3,7 @@ import L, {LatLngExpression, Marker} from 'leaflet';
 import {Tick} from '../models/tick';
 import {RequestService} from '../request.service';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
-import {ModalController, PopoverController} from '@ionic/angular';
+import {ModalController, NavController, PopoverController} from '@ionic/angular';
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
 import 'leaflet/dist/images/marker-icon.png';
@@ -25,6 +25,7 @@ export class HomePage implements AfterViewInit {
   private currentLocationMarker: Marker<any>;
 
   constructor(private modalController: ModalController,
+              public navCtrl: NavController,
               private popoverController: PopoverController,
               private geolocation: Geolocation,
               private request: RequestService) {
@@ -66,7 +67,7 @@ export class HomePage implements AfterViewInit {
   private showTicks(ticks: Tick[]) {
     let self = this;
     let onTickClick = function(e) {
-      self.presentPopover(e.originalEvent, this);
+      self.presentFacilityPopover(e.originalEvent, this);
     }
     ticks.forEach(tick => {
       let lat = Number.parseFloat(tick.coords.latitude);
@@ -76,7 +77,7 @@ export class HomePage implements AfterViewInit {
     })
   }
 
-  async presentPopover(event: any, tick: Tick) {
+  async presentFacilityPopover(event: any, tick: Tick) {
     const popover = await this.popoverController.create({
       component: FacilityPopoverComponent,
       componentProps: {
@@ -128,6 +129,10 @@ export class HomePage implements AfterViewInit {
     modal.onWillDismiss()
         .then(() => this.currentLocationMarker.remove())
     return await modal.present();
+  }
+
+  loginClick() {
+    this.navCtrl.navigateForward('/auth')
   }
 }
 // locatePosition(){

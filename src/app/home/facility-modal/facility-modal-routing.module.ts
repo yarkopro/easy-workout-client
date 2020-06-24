@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: FacilityModalPage
+  },
+  {
+    path: 'activity-modal',
+    loadChildren: () => import('./activity-modal/activity-modal.module').then( m => m.ActivityModalPageModule)
   }
 ];
 

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{activity.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item>
+        <ion-label *ngIf="activity.author">{{activity.author.fullName}}</ion-label><br>
+        <ion-label>{{activity.time}}</ion-label><br>
+        <ion-label>{{activity.description}}</ion-label><br>
+    </ion-item>
+
+    <ion-label>
+        Люди, які беруть участь в активності:
+    </ion-label>
+    <ion-item *ngFor="let user of activity.userAssignments">
+        <ion-avatar slot="start">
+            <img src="{{user.avatarUrl}}">
+        </ion-avatar>
+        <ion-label>
+            <h2>{{user.fullName}}</h2>
+        </ion-label>
+    </ion-item>
+    <ion-fab>
+      <ion-fab-button class="subscribe-button" (click)="subscribeToActivity()">
+        <ion-icon name="checkmark-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+</ion-content>

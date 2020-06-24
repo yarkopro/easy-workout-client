@@ -1,11 +1,14 @@
 import {Facility} from './facility';
 import {Coords} from './coords';
+import {User} from './user';
 
 export class Activity {
     id: number;
     name: string;
     description: string;
-    timestamp: number;
+    time: number;
+    author: User;
+    userAssignments: User[];
 }
 
 export class StandaloneActivity extends Activity {

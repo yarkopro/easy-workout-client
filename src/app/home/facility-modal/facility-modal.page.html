@@ -17,9 +17,10 @@
   </ion-card>
   <div class="facility-activities" *ngIf="facility?.activities?.length > 0">
     <h1><b>Activities on facility:</b></h1>
-    <ion-card *ngFor="let activity of facility.activities">
+    <ion-card *ngFor="let activity of facility.activities"
+              (click)="presentActivityModal(activity)">
       <ion-card-header>
-        <ion-card-subtitle>{{activity.timestamp | date: 'EEEE, d MMMM, yyyy'}}</ion-card-subtitle>
+        <ion-card-subtitle>{{activity.time | date: 'EEEE, d MMMM, yyyy'}}</ion-card-subtitle>
         <ion-card-title>{{activity.name}}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
@@ -28,6 +29,11 @@
     </ion-card>
   </div>
   <ng-template #noActivities>
-    <ion-text class="no-data"></ion-text>
+    <ion-text class="no-data">На цій локації активності відсутні</ion-text>
   </ng-template>
+  <ion-fab>
+    <ion-fab-button (click)="presentNewActivityModal()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

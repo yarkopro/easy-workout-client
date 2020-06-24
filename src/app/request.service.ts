@@ -6,6 +6,7 @@ import {API_URL} from './API_URL';
 import {Facility} from './models/facility';
 import {TickType} from './models/tickType';
 import {Coords} from './models/coords';
+import {Activity} from './models/activity';
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +43,10 @@ export class RequestService {
         .set("longitude", coords.longitude)
         .set("latitude", coords.latitude);
     return this.http.get<Facility[]>(API_URL + '/facilities/nearby', {params: httpParams})
+  }
+
+  getActivity(id: number): Observable<Activity> {
+    let params = new HttpParams().set("id", id.toString())
+    return this.http.get<Activity>(API_URL + '/activities', {params: params});
   }
 }
