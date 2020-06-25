@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import {FacilityPopoverComponent} from './facility-popover/facility-popover.component';
+import {AuthModule} from '../auth/auth.module';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import {FacilityPopoverComponent} from './facility-popover/facility-popover.comp
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
+    AuthModule,
   ],
   declarations: [HomePage, FacilityPopoverComponent]
 })

@@ -130,10 +130,6 @@ export class HomePage implements AfterViewInit {
         .then(() => this.currentLocationMarker.remove())
     return await modal.present();
   }
-
-  loginClick() {
-    this.navCtrl.navigateForward('/auth')
-  }
 }
 // locatePosition(){
 //   this.map.locate({setView:true}).on("locationfound", (e: any)=> {

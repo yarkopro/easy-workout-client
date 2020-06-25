@@ -22,19 +22,10 @@
 
 .map-container {
   height: 100%;
-  width: 400px;
+  width: 100vw;
 }
 
 #container a {
   text-decoration: none;
 }
-ion-fab {
-  position: absolute;
-  bottom: 30px;
-  right: 20px;
-  ion-fab-button {
-    //position: absolute;
-    width: 70px;
-    height: 70px;
-  }
-}
+
