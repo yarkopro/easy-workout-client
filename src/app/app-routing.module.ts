@@ -22,7 +22,7 @@ const routes: Routes = [
   {
     path: 'nearby-facilities-modal',
     loadChildren: () => import('./home/nearby-facilities-modal/nearby-facilities-modal.module').then(m => m.NearbyFacilitiesModalPageModule)
-  },
+  }
 ];
 
 @NgModule({

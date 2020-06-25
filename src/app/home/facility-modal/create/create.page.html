@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Створення нової активності</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <h2>На локації {{facility.name}}</h2>
+  </ion-item>
+  <form [formGroup]="fg" (ngSubmit)="logForm()">
+    <ion-item>
+      <ion-label>Назва активності</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Опис</ion-label>
+      <ion-textarea formControlName="description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-datetime formControlName="time"></ion-datetime>
+    </ion-item>
+    <ion-button type="submit" [disabled]="!fg.valid">Відправити</ion-button>
+  </form>
+</ion-content>

@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
+  },
+  {
+    path: 'new-facility',
+    loadChildren: () => import('./new-facility/new-facility.module').then( m => m.NewFacilityPageModule)
   }
 ];
 

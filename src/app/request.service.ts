@@ -6,7 +6,7 @@ import {API_URL} from './API_URL';
 import {Facility} from './models/facility';
 import {TickType} from './models/tickType';
 import {Coords} from './models/coords';
-import {Activity} from './models/activity';
+import {Activity, FacilityActivity} from './models/activity';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +50,11 @@ export class RequestService {
     return this.http.get<Activity>(API_URL + '/activities', {params: params});
   }
 
-  subscribeToActivity() {
-    return null
+  subscribeToActivity(activityId: number) {
+    return this.http.post(API_URL + '/activity-assignment/', {id: activityId}, {responseType: 'text'})
+  }
+
+  postActivity(activity: FacilityActivity): Observable<any> {
+    return this.http.post(API_URL + '/activities', activity, {responseType: 'text'})
   }
 }

@@ -22,6 +22,6 @@ export class ActivityModalPage implements OnInit {
   }
 
   subscribeToActivity() {
-    this.requestService.subscribeToActivity()
+    this.requestService.subscribeToActivity(this.activity.id)
   }
 }

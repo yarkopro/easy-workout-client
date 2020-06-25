@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'activity-modal',
     loadChildren: () => import('./activity-modal/activity-modal.module').then( m => m.ActivityModalPageModule)
+  },
+  {
+    path: 'create',
+    loadChildren: () => import('./create/create.module').then( m => m.CreatePageModule)
   }
 ];
 
