@@ -6,17 +6,21 @@ import { IonicModule } from '@ionic/angular';
 
 import {HttpClientModule} from '@angular/common/http';
 import {AuthComponent} from './auth.component';
+import {AuthService} from './auth.service';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   exports: [
     AuthComponent
   ],
-  declarations: [AuthComponent]
+  declarations: [AuthComponent],
+  providers: [
+      AuthService
+  ]
 })
 export class AuthModule {}

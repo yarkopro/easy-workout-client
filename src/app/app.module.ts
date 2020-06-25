@@ -12,8 +12,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {IonicStorageModule} from '@ionic/storage';
 import {SafariViewController} from '@ionic-native/safari-view-controller/ngx';
-import {AuthService} from './auth/auth.service';
 import {TimeoutInterceptor} from './timeout-interceptor/timeout.interceptor';
+import {AuthModule} from './auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,10 +23,10 @@ import {TimeoutInterceptor} from './timeout-interceptor/timeout.interceptor';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    AuthModule
   ],
   providers: [
-    AuthService,
     HttpClientModule,
     SafariViewController,
     StatusBar,
