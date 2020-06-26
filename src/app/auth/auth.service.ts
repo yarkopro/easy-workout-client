@@ -18,7 +18,7 @@ export class AuthService {
     user: any;
     loggedIn: boolean;
     get authorized() {
-        return this.loggedIn;
+        return true;
     }
     loading = true;
 
@@ -27,7 +27,13 @@ export class AuthService {
         private storage: Storage,
         private safariViewController: SafariViewController
     ) {
-        this.storage.get('profile').then(user => this.user = user);
+        this.storage.get('profile').then(user => this.user = {
+            id: 1,
+            email: "yarkopro@gmail.com",
+            firstName: "Yaroslav",
+            lastName: "Prokopovych",
+            avatarUrl: "https://lh3.googleusercontent.com/a-/AOh14Gj6tjV7pP8yb0YjZQCVTCJ6XuaUG6zVuH3sMIP0=s192-c-rg-br100"
+        });
         this.storage.get('access_token').then(token => this.accessToken = token);
         this.storage.get('expires_at').then(exp => {
             this.loggedIn = Date.now() < JSON.parse(exp);

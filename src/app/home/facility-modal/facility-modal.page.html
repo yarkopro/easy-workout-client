@@ -1,6 +1,6 @@
 <ion-toolbar>
   <ion-buttons slot="end">
-    <ion-button (click)="dismissModal()">Close</ion-button>
+    <ion-button (click)="dismissModal()">Закрити</ion-button>
   </ion-buttons>
 </ion-toolbar>
 
@@ -16,7 +16,7 @@
     </ion-card-content>
   </ion-card>
   <div class="facility-activities" *ngIf="facility?.activities?.length > 0">
-    <h1><b>Activities on facility:</b></h1>
+    <h1><b>Активності на об'єкті:</b></h1>
     <ion-card *ngFor="let activity of facility.activities"
               (click)="presentActivityModal(activity)">
       <ion-card-header>

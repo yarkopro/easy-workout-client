@@ -7,6 +7,7 @@ import {Facility} from './models/facility';
 import {TickType} from './models/tickType';
 import {Coords} from './models/coords';
 import {Activity, FacilityActivity} from './models/activity';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,6 @@ export class RequestService {
 
   getTicks(): Observable<Tick[]> {
     return this.http.get(API_URL+"/ticks/") as Observable<Tick[]>;
-
-    // .pipe(map(text => JSON.parse(text as string))) as Observable<Tick[]>;
-    // return
   }
 
   getEntityFromTick(tick: Tick): Observable<Facility> {
@@ -35,7 +33,7 @@ export class RequestService {
 
   getFacility(facilityId: number): Observable<Facility> {
     let params = new HttpParams().set("id", facilityId.toString())
-    return this.http.get(API_URL + '/facilities',{params: params}) as Observable<Facility>;
+    return this.http.get(API_URL + '/facilities',{params: params}).pipe(map(setActivityHeader)) as Observable<Facility>;
   }
 
   getNearbyFacilities(coords: Coords): Observable<Facility[]> {
@@ -61,4 +59,34 @@ export class RequestService {
   postFacility(facility: Facility): Observable<any> {
     return this.http.post(API_URL + '/activities', facility, {responseType: 'text', })
   }
+}
+
+
+
+
+
+
+
+var users = [
+  {
+    id: 1,
+    email: "yarkopro@gmail.com",
+    firstName: "Yaroslav",
+    lastName: "Prokopovych",
+    avatarUrl: "https://lh3.googleusercontent.com/a-/AOh14Gj6tjV7pP8yb0YjZQCVTCJ6XuaUG6zVuH3sMIP0=s192-c-rg-br100"
+  },{
+    id: 2,
+    email: "yaroslav.prokopovych.pi.2015@lpnu.ua",
+    firstName: "Ярослав",
+    lastName: "Прокопович",
+    avatarUrl: "https://lh6.googleusercontent.com/-_YAFNpH2t20/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucn0hha4ToIxPHMczPF9MEN5-t-7uw/s192-c-rg-br100/photo.jpg"
+  },
+]
+
+var setActivityHeader = function(facility) {
+  facility.activities.forEach(act => {
+    act.author = users[1];
+    act.userAssignments = [users[1]];
+  })
+  return facility;
 }

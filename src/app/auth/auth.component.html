@@ -1,17 +1,16 @@
-<ion-button button
-            expand="block"
-            color="primary"
-            *ngIf="!auth.loggedIn"
-            (click)="auth.login()">Log In
-</ion-button>
+<!--<ion-button button-->
+<!--            expand="block"-->
+<!--            color="primary"-->
+<!--            *ngIf="!auth.loggedIn"-->
+<!--            (click)="auth.login()">Log In-->
+<!--</ion-button>-->
 
-<ng-template [ngIf]="auth.loggedIn">
-    <ion-avatar *ngIf="auth.user">
-        <img [src]="auth.user.picture">
+<!--<ng-template *ngIf=""></ng-template>-->
+    <ion-avatar>
+        <img src="https://lh3.googleusercontent.com/a-/AOh14Gj6tjV7pP8yb0YjZQCVTCJ6XuaUG6zVuH3sMIP0=s192-c-rg-br100">
     </ion-avatar>
     <!--    <ion-button-->
     <!--            button-->
     <!--            expand="block"-->
     <!--            color="danger"-->
     <!--            (click)="auth.logout()">Log Out</ion-button>-->
-</ng-template>
