@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {RequestService} from '../../request.service';
 import {Facility} from '../../models/facility';
 import {facilityTypesDefinition} from '../../models/facility-type';
-import {ModalController} from '@ionic/angular';
+import {ModalController, NavController} from '@ionic/angular';
 import {ActivityModalPage} from './activity-modal/activity-modal.page';
 import {Activity} from '../../models/activity';
 import {AuthService} from '../../auth/auth.service';
@@ -23,6 +23,7 @@ export class FacilityModalPage implements OnInit {
   facDefs = facilityTypesDefinition;
 
   constructor(private requestService: RequestService,
+              private navCtrl: NavController,
               private modalController: ModalController,
               private auth: AuthService) { }
 
@@ -46,6 +47,7 @@ export class FacilityModalPage implements OnInit {
   }
 
   async presentNewActivityModal() {
+    // this.navCtrl.navigateForward('/create')
     const modal = await this.modalController.create({
       component: CreatePage,
       swipeToClose: true,
@@ -53,6 +55,9 @@ export class FacilityModalPage implements OnInit {
         'facility': this.facility
       }
     });
+    modal.onDidDismiss().then(result => {
+      this.facility.activities.push(result.data)
+    })
     return await modal.present();
   }
 

@@ -1,35 +1,35 @@
 export enum FacilityType {
-    GYM,
     PLAYGROUND,
     TRACK,
-    BAR,
-    FIELD
+    GYM,
+    FIELD,
+    OUTLET
 }
 
 export const facilityTypesDefinition = [
     {
-        type: FacilityType.GYM,
-        name: "Gym",
-        icon: "barbell-outline"
-    },
-    {
         type: FacilityType.PLAYGROUND,
-        name: "Playground",
+        name: "Спортивний майданчик",
         icon: "body-outline"
     },
     {
         type: FacilityType.TRACK,
-        name: "Running track",
+        name: "Біговий трек",
         icon: "walk-outline"
     },
     {
-        type: FacilityType.BAR,
-        name: "Workout bar",
+        type: FacilityType.GYM,
+        name: "Спортивний зал",
         icon: "barbell-outline"
     },
     {
         type: FacilityType.FIELD,
-        name: "Footbal field",
+        name: "Гральне поле",
         icon: "football-outline"
+    },
+    {
+        type: FacilityType.OUTLET,
+        name: "Магазин спорттоварів",
+        icon: "barbell-outline"
     }
 ]

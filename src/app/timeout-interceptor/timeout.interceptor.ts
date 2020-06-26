@@ -21,7 +21,8 @@ export class TimeoutInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request)
             .pipe(
-                delayedRetry(500, 5)
+                // filter((http: HttpResponse<any>) => http.status === 504),
+                delayedRetry(10000, 5)
             );
     }
 }

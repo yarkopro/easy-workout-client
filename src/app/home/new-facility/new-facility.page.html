@@ -1,9 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>new-facility</ion-title>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>Створення нового об'єкту</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form [formGroup]="fg" (ngSubmit)="logForm()">
+    <ion-item>
+      <ion-label>Назва локації:</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Опис:</ion-label>
+      <ion-textarea formControlName="description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+<!--      <ion-label style="width: 20%">Тип:</ion-label>-->
+      <ion-select formControlName="type" placeholder="Тип об'єкту" style="width: 100%">
+        <ion-select-option *ngFor="let type of facDefs" [value]="type.type">{{type.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
 
+    <ion-button type="submit" [disabled]="!fg.valid" slot="end">Відправити</ion-button>
+  </form>
 </ion-content>

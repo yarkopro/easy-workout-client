@@ -14,6 +14,7 @@ import {IonicStorageModule} from '@ionic/storage';
 import {SafariViewController} from '@ionic-native/safari-view-controller/ngx';
 import {TimeoutInterceptor} from './timeout-interceptor/timeout.interceptor';
 import {AuthModule} from './auth/auth.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +25,9 @@ import {AuthModule} from './auth/auth.module';
     AppRoutingModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
-    AuthModule
+    AuthModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     HttpClientModule,

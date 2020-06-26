@@ -7,10 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: ActivityModalPage
-  },
-  {
-    path: 'create',
-    loadChildren: () => import('./create/create.module').then(m => m.CreatePageModule)
   }
 ];
 

@@ -57,4 +57,8 @@ export class RequestService {
   postActivity(activity: FacilityActivity): Observable<any> {
     return this.http.post(API_URL + '/activities', activity, {responseType: 'text'})
   }
+
+  postFacility(facility: Facility): Observable<any> {
+    return this.http.post(API_URL + '/activities', facility, {responseType: 'text', })
+  }
 }

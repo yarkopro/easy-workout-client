@@ -17,6 +17,10 @@ import { CreatePage } from './create.page';
         FormsModule,
         ReactiveFormsModule
     ],
-  declarations: [CreatePage]
+  declarations: [CreatePage],
+    providers: [
+        FormsModule,
+        ReactiveFormsModule
+    ]
 })
 export class CreatePageModule {}

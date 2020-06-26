@@ -58,6 +58,7 @@ export class HomePage implements AfterViewInit {
             });
           }, 0);
         })
+
   }
 
   fetchTicks(): Promise<Tick[]> {
@@ -130,6 +131,10 @@ export class HomePage implements AfterViewInit {
         .then(() => this.currentLocationMarker.remove())
     return await modal.present();
   }
+
+    openNewFacility() {
+      this.navCtrl.navigateForward('new-facility')
+    }
 }
 // locatePosition(){
 //   this.map.locate({setView:true}).on("locationfound", (e: any)=> {
